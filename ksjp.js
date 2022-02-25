@@ -334,16 +334,15 @@ function setAreaGlobalStyles() {
   //lyrics font
   switch (lyricsFont) {
   case "0":
-    eRenderArea.style.fontFamily = 
-      "BiauKai, STKaiti, DFKai-SB";
+    eRenderArea.style.fontFamily = '"標楷體","BiauKai","全字庫正楷體", "TW-Kai", STKaiti, DFKai-SB;';
   break;
   case "1":
     eRenderArea.style.fontFamily = 
-      'PingFang, STHeiti, "Microsoft JhengHei"';
+      'PingFang, STHeiti, "Microsoft JhengHei";';
   break;
   case "2":
     eRenderArea.style.fontFamily = 
-      'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU';
+      'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU;';
   break;
   default:
   break;
