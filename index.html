@@ -2,14 +2,12 @@
 
 <html>
 <head>
-
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-
-<title>簡譜製作24</title>
+<title>簡譜製作</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" type="text/css" href="ksjp24.css" media="all"/>
+
+
+<!-- for DriveToWeb, external .css only works in a sub-folder -->
+<link rel="stylesheet" type="text/css" href="asset/ksjp.css" media="all"/>
 </head>
 
 <body>
@@ -33,10 +31,11 @@
 
 <!-- jp contents area -->
 <textarea id="jp_contents" style="resize:none;font-size:14pt;height:400px;width:370px;">
-/斜線開頭：不對齊音符
-$|1 - 2. |(^3.(4))((5))   |((v6) v7)   ^1   ]
-一二三四 五六七
-歌詞自動 對齊
+/                歌名
+
+$|0(1).2- |(^3.(4#5))   |((v6))  b(v7)^1   ]
+ 歌 詞自動 貼近對應之音符
+
 /斜線開頭：不對齊音符
 </textarea>
 
@@ -92,14 +91,16 @@ $|1 - 2. |(^3.(4))((5))   |((v6) v7)   ^1   ]
 </select>
 <span style="font-size:12px;margin-left:10px;">音符:</span>
 <select name="notefont" id="note_font">
-  <option value="0" selected>monospace</option>
-  <option value="1">Lucida</option>
+  <option value="monospace" selected>monospace</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
 </select>
 <select name="notefontsize" id="note_size">
   <option value="18">18</option>
   <option value="22">22</option>
   <option value="26" selected>26</option>
-  <option value="30">30</option>
+  <option value="29">30</option>
 </select>
 </div>
 
@@ -108,7 +109,8 @@ $|1 - 2. |(^3.(4))((5))   |((v6) v7)   ^1   ]
 
 </body>
 
-<script type="text/javascript" src="ksjp24.js"></script>
+<!-- for DriveToWeb, external .js only works in a sub-folder -->
+<script type="text/javascript" src="asset/ksjp.js"></script>
 
 </html>
 
