@@ -19,7 +19,7 @@ div.cur_w {
 }
 
 table.nt {
-border: 0px solid blue;
+border: 1px solid blue;
 border-collapse: separate;
 border-spacing: 0 0px;
 padding-bottom:10px;  /* margin between note and lyrics */
