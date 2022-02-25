@@ -29,8 +29,12 @@ const sInputSaveFilename = "存檔名稱：";
 const sInvalidFileName = "無效檔名";
 
 
-
 //definition const
+const lyricsFontKai = '"標楷體","BiauKai","全字庫正楷體", "TW-Kai", STKaiti, DFKai-SB';
+const lyricsFontHei = 'PingFang, STHeiti, "Microsoft JhengHei"';
+const lyricsFontMing = 'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU';
+
+
 const keySignature = "ks_church_jianpu_";
 const versionNumber = "11";
 const filenamePrefix = keySignature + versionNumber;
@@ -129,7 +133,7 @@ const songEnd = ['<td><div class="double_bar_b"></div></td>',
 '<td><div class="double_bar_w"></div></td>'];
 
 const lyricsBegin = '<div class="ly" style="';
-const lyricsSpace = '<span class="sp">&nbsp;</span>';
+//const lyricsSpace = '<span class="sp">&nbsp;</span>';
 const lyricsEnd = '</div>';
 
 const freetextBegin = '<div class="freetext" style=">';
@@ -334,16 +338,13 @@ function setAreaGlobalStyles() {
   //lyrics font
   switch (lyricsFont) {
   case "0":
-    eRenderArea.style.fontFamily = 
-      "BiauKai, STKaiti, DFKai-SB";
+    eRenderArea.style.fontFamily = lyricsFontKai;
   break;
   case "1":
-    eRenderArea.style.fontFamily = 
-      'PingFang, STHeiti, "Microsoft JhengHei"';
+    eRenderArea.style.fontFamily = lyricsFontHei;
   break;
   case "2":
-    eRenderArea.style.fontFamily = 
-      'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU';
+    eRenderArea.style.fontFamily = lyricsFontMing;
   break;
   default:
   break;
@@ -537,6 +538,8 @@ function buildJPContentsHTML() {
                       //0 if <td> exists, but is not a note, maybe space or bar
   var tdCenterPosition = [];
   var iLyricsChar = 0;  //index of lyrics characters
+
+  var p1, p2;
   var lastLyricCenterPosition = -lyricsSizeNum;  //the last lyrics character's position
 
 
@@ -737,10 +740,6 @@ function buildJPContentsHTML() {
         for (var j=0,iNote=0;j<td.length;j++) {
           //only record <td> with notes, skip <td> which is not a note
           if (tdIsNote[j] === 1) {
-            //debug
-            if (j===3) {
-              var eTD = td[j];
-            }
             //normal character
             tdCenterPosition[iNote] = td[j].offsetLeft + td[j].offsetWidth/2;
             iNote ++;
@@ -1050,9 +1049,8 @@ document.getElementById("import").addEventListener("click", function () {
 }, false);
 
 function importFile() {
-  var input, file, fr;
+  var file, fr;
 
-  //input = document.getElementById('userPCFile');
   file = ePCFileInput.files[0];
   fr = new FileReader();
   fr.onload = loadFileOK;
@@ -1334,7 +1332,7 @@ document.getElementById("debug").addEventListener("click", function () {
 
   //display result for validation
   var s = "";
-  for (var i=0; i<localStorage.length; i++) {
+  for (i=0; i<localStorage.length; i++) {
     s += localStorage.key(i) + "\n";
   }//for
   alert ("localStorage:\n" + s);
