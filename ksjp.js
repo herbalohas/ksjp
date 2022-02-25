@@ -29,12 +29,8 @@ const sInputSaveFilename = "存檔名稱：";
 const sInvalidFileName = "無效檔名";
 
 
+
 //definition const
-const lyricsFontKai = '"標楷體","BiauKai","全字庫正楷體", "TW-Kai", STKaiti, DFKai-SB;';
-const lyricsFontHei = 'PingFang, STHeiti, "Microsoft JhengHei";';
-const lyricsFontMing = 'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU;';
-
-
 const keySignature = "ks_church_jianpu_";
 const versionNumber = "11";
 const filenamePrefix = keySignature + versionNumber;
@@ -338,13 +334,16 @@ function setAreaGlobalStyles() {
   //lyrics font
   switch (lyricsFont) {
   case "0":
-    eRenderArea.style.fontFamily = lyricsFontKai;
+    eRenderArea.style.fontFamily = 
+      "BiauKai, STKaiti, DFKai-SB";
   break;
   case "1":
-    eRenderArea.style.fontFamily = lyricsFontHei;
+    eRenderArea.style.fontFamily = 
+      'PingFang, STHeiti, "Microsoft JhengHei"';
   break;
   case "2":
-    eRenderArea.style.fontFamily = lyricsFontMing;
+    eRenderArea.style.fontFamily = 
+      'STSong, "LiSong Pro", "Apple LiSung Light",PMingLiU';
   break;
   default:
   break;
