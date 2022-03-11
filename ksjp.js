@@ -1451,7 +1451,7 @@ function buildJPContentsHTML() {
               //no <span> output
 
               //record for tab symbol display
-              noteCenterXForChordOccupied[targetChordLine][iChordChar] = 0;
+              noteCenterXForChordOccupied[targetNoteLineForChord][iChordChar] = 0;
             }
             else {
               const currentChordWidth = chordLineChordWidth[targetChordLine][iChordChar];
@@ -1467,7 +1467,7 @@ function buildJPContentsHTML() {
               prevChordWidth = currentChordWidth;
 
               //record for tab symbol display
-              noteCenterXForChordOccupied[targetChordLine][iChordChar] = 1;
+              noteCenterXForChordOccupied[targetNoteLineForChord][iChordChar] = 1;
             }
 
             iChordChar ++;
@@ -1546,7 +1546,7 @@ iLyricsChar >= noteCenterXForLyrics.length   p2=last+size          p2=last+size
             lyricCursorPos[targetLyricsLine][iLyricsChar] = p1 - lyricsCenter2LeftOffset;
 
             //record for tab symbol display
-            noteCenterXForLyricsOccupied[targetNoteLine][iLyricsChar] = 0;
+            //noteCenterXForLyricsOccupied[targetNoteLine][iLyricsChar] = 0;
           }
           else {
             p2 = lastLyricCenterPosition + lyricsSizeNum;  //=span.ly{font-size:36px;}
