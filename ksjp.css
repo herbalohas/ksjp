@@ -1,22 +1,47 @@
-td.cur {
-  font-size:14px;
+#cursor_div, .cursor_div {
+  position:absolute;
+  width:0px;
+  height:50px;
+  border:1px solid red;
+  left:2000px;
 }
-div.cur_b {
-  width:100%; height:10px;  
+
+
+
+/* slur curve */
+td.tdcur {
+  font-size:14px;
+  line-height:0px;
+  height:2px;
+}
+
+div.cur {
+  height:8px;  /* decides curvature and height at the same time */
+  line-height:8px; 
+  border-radius: 50%/10px 10px 0 0;
+  border-bottom-width: 0px !important;
+  position:relative;
+  top:7px;
+}
+.cur_long {
+  margin-left:5%;
+  width:90%;
+}
+.cur_short {
+  margin-left:15px;  /*20%;*/
+  margin-right:15px;
+}
+.cur_b {
   border:solid 2px black;
   border-color:black transparent transparent;
-  border-radius: 50%/10px 10px 0 0;
-  border-bottom-width: 0px !important;
-  font-size:18px;
 }
-div.cur_w {
-  width:100%; height:10px;  
+.cur_w {
   border:solid 2px white;
   border-color:white transparent transparent;
-  border-radius: 50%/10px 10px 0 0;
-  border-bottom-width: 0px !important;
-  font-size:18px;
 }
+
+
+
 
 table.nt {
 border: 0px solid blue;
@@ -28,14 +53,39 @@ padding-bottom:10px;  /* margin between note and lyrics */
 font-weight: normal;
 }
 
+tr.slur {
+/* dummy class for getElementsByClassName */
+}
 td {
-border: 0px solid red;
+border: 0px solid red;  /*transparent will break up underline */
 line-height: 15px;
 text-align:center;
 border-spacing: 0px;
-padding: 0px;
+padding: 0px;  /*must be set explicitly*/
 vertical-align:top;
+height:42px;
 }
+
+.chordtabline, .lyricstabline {
+/* dummy class for getElementsByClassName */
+position:absolute;
+line-height: 10px;  /* important for different arrow symbols to align */
+height: 10px;
+}
+.chordtabline {
+bottom: 50px;
+}
+.lyricstabline {
+bottom: 2px;
+}
+.tab {
+border:0px solid green;
+position:absolute;
+font-size:8px;
+color:red;
+font-family:arial;
+}
+
 
 /*td.sp2 {
 font-size: 8px;
@@ -90,7 +140,7 @@ min-width:25px;
 }
 
 /* for # and b */
-.nsharp, .nflat {
+.nsharp, .nflat, .nnatural {
 height: 20px;
 line-height: 20px;
 vertical-align:bottom;
@@ -99,11 +149,10 @@ border:0px solid blue;
 font-family: arial;
 width:4px;
 }
-.nflat {
+.nflat, .nnatural {
 position:relative;
 right:4px;
 }
-
 
 
 .dot {
@@ -178,9 +227,9 @@ width:2px;
 height:42px;
 }
 
-div.ly {
+div.lyrics_div, div.chord_div {  /* lyrics div, chord div */
+position:relative;
 border:0px solid green;
-/*height:40px; assigned by javascript */
 vertical-align:bottom;
 }
 span.ly {  /* for span of each lyrics character */
@@ -194,4 +243,9 @@ border:0px solid green;
 /*font-family: assigned by javascript*/
 /*font-size: 36px; assigned by javascript*/
 /*line-height: 40px; assigned by javascript */
+}
+.cursor {
+border:1px solid red;
+width: 4px;
+height: 10px;
 }

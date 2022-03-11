@@ -12,15 +12,19 @@
 
 <body>
 
-<!-- file tool bar -->
-<div >
+<!---------------------------------
+           file tool
+----------------------------------->
+<div>
 <span><button id="new_file">空白文件</button></span>
 <span>&nbsp;</span>
-<span><xform><select name="- 開啟舊檔 -" id="openfile"></select></xform></span>
+<span><select name="- 開啟舊檔 -" id="openfile"></select></span>
 </div>
 
-<!-- left panel area -->
-<div style="position:absolute;left:10px;top:50px;height:400px;width:376px;">
+<!---------------------------------
+           left panel
+----------------------------------->
+<div name="left panel" style="position:absolute;left:10px;top:56px;height:400px;width:376px;">
 
 <!-- file name area -->
 <div style="margin-left:4px;margin-bottom:4px;">
@@ -31,12 +35,27 @@
 
 <!-- jp contents area -->
 <textarea id="jp_contents" style="resize:none;font-size:14pt;height:400px;width:370px;">
-/                歌名
-
 $|1(0).2- |(^3.(4#5))   |((v6))  b(v7)^1   ]
-中 文歌 詞自動 對齊音符
+中文歌詞自動對齊音符
+/以斜線開頭同歌詞字體，但不對齊音符
+/1以/1開頭為文字格式1
+/2以/2開頭為格式2
 
-/斜線開頭：不對齊音符
+
+/                            雲上太陽
+/1C大調 4/4
+/1
+@C                 Am
+$|(^3 {^2)  (3} 4)   b^5  -  | (#1 v7__%1 2)    3  - |
+無論是住在 美麗的高山
+
+@F          C/E        Dm          G
+$|(v6 v5 v6 v7)   {1   v5}  | (4 3 2 1)   2  -  |
+或是躺臥在 陰暗的幽谷
+
+@F           G
+$|{(v6 1)  (4 3)}   2 (#1 v7) |%1 - - - ]
+主已為你我而預備
 </textarea>
 
 
@@ -47,65 +66,175 @@ $|1(0).2- |(^3.(4#5))   |((v6))  b(v7)^1   ]
 
 
 <!-- debug area -->
-<textarea id="config_text" style="visibility:hidden;width:370px;resize:none;margin-top:20px;">
+<div style="visibility:hidden;">
+<textarea id="config_text" style="width:370px;resize:none;margin-top:20px;">
 </textarea>
-<button id="debug" style="visibility:hidden;">clear all ksjp localStorage</button>
+<button id="clear_storage">clear all ksjp localStorage</button>
+<button id="debug">debug</button>
+<button id="showtd">showTD</button>
+</div>
+
+</div><!-- left panel -->
 
 
 
-</div><!-- left panel area -->
-
-
-
-
-<!-- editor tool bar -->
-<div style="box-sizing:border-box;position:absolute;top:10px;left:400px;width:760px;height:41px;border:1px solid #aaa;background-color:#e8e8e8;padding-top:10px;">
-&nbsp;
+<!---------------------------------
+           editor tool
+----------------------------------->
+<div name="editor tool" style="box-sizing:border-box;position:absolute;top:10px;left:400px;width:760px;height:80px;border:1px solid #aaa;background-color:#e8e8e8;margin-top:4px;font-size:12px;padding-top:6px;padding-left:10px;">
+<div name="tool 1" style="margin-bottom:2px;">
 <select name="fontcolor" id="font_color">
-  <option value="0" selected>字體：黑色</option>
-  <option value="1">字體：白色</option>
+  <option value="0">黑色字體</option>
+  <option value="1">白色字體</option>
 </select>
 <select name="bgcolor" id="bg_color">
-  <option value="black" selected>背景：黑色</option>
-  <option value="white">背景：白色</option>
-  <option value="css_color">背景：CSS</option>
+  <option value="black">黑色背景</option>
+  <option value="white">白色背景</option>
+  <option value="css_color">CSS背景</option>
 </select>
-<span style="font-size:12px;margin-left:4px;">CSS背景:</span>
-<input type="text" id="css_color" style="width:80px;" value="#af8"></input>
-<span style="font-size:12px;margin-left:20px;">歌詞:</span>
-<select name="lyricsfont" id="lyrics_font">
-  <option value="0" selected>標楷體</option>
-  <option value="1">正黑體</option>
-  <option value="2">明體</option>
+
+<span style="position:absolute;left:240px;">
+<span>音符:</span>
+<select name="notefont" id="note_font">
+  <option value="monospace">monospace</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
 </select>
-<select name="lyricsfontsize" id="lyrics_size">
-  <option value="26">24</option>
+<select name="notesize" id="note_size">
+  <option value="18">18</option>
+  <option value="22">22</option>
+  <option value="26">26</option>
+  <option value="29">30</option>
+</select>
+<select name="chordsize" id="chord_size" style="visibility:hidden;">
+  <option value="18">18</option>
+  <option value="22">22</option>
+  <option value="26">26</option>
+  <option value="29">30</option>
+</select>
+<select name="chordfont" id="chord_font" style="visibility:hidden;">
+  <option value="monospace">monospace</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+</select>
+</span>
+
+
+<span style="position:absolute;right:10px;">
+<span>/1 文字:</span>
+<select name="text1font" id="text1_font">
+<!-- Chinese font's value is token to avoid no corresponding value when actual font-family updated in the future -->
+  <option value="kai">楷體</option>
+  <option value="hei">黑體</option>
+  <option value="ming">明體</option>
+  <option value="monospace">monospace</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+</select>
+<select name="text1size" id="text1_size">
+  <option value="10">10</option>
+  <option value="14">14</option>
+  <option value="18">18</option>
+  <option value="22">22</option>
+  <option value="26">26</option>
   <option value="28">28</option>
   <option value="32">32</option>
-  <option value="36" selected>36</option>
+  <option value="36">36</option>
   <option value="44">44</option>
   <option value="48">48</option>
   <option value="54">54</option>
   <option value="60">60</option>
   <option value="72">72</option>
 </select>
-<span style="font-size:12px;margin-left:10px;">音符:</span>
-<select name="notefont" id="note_font">
-  <option value="monospace" selected>monospace</option>
+</span>
+
+
+
+</div><!--tool 1-->
+
+
+<div name="tool 2" style="border:0px solid red;">
+<span style="margin-left:4px;">CSS背景:</span>
+<input type="text" id="css_color" style="width:40px;" value="#af8"></input>
+<!--<input type="text" id="bg_img" style="width:240px;" value=" "></input>-->
+<input type="checkbox" id="showtab" name="showtab">
+  <label for="showtab">定位點</label>&nbsp;
+<span style="visibility:hidden;">
+<input type="checkbox" id="showcursor" name="showcursor">
+  <label for="showcursor">游標</label>
+</span>
+
+<span style="position:absolute;left:240px;">
+<span>歌詞:</span>
+<select name="lyricsfont" id="lyrics_font">
+  <option value="kai">楷體</option>
+  <option value="hei">黑體</option>
+  <option value="ming">明體</option>
+  <option value="monospace">monospace</option>
   <option value="Trebuchet MS">Trebuchet MS</option>
   <option value="Verdana">Verdana</option>
   <option value="Comic Sans MS">Comic Sans MS</option>
 </select>
-<select name="notefontsize" id="note_size">
+<select name="lyricsfontsize" id="lyrics_size">
+  <option value="22">22</option>
+  <option value="24">24</option>
+  <option value="26">26</option>
+  <option value="28">28</option>
+  <option value="32">32</option>
+  <option value="36">36</option>
+  <option value="44">44</option>
+  <option value="48">48</option>
+  <option value="54">54</option>
+  <option value="60">60</option>
+  <option value="72">72</option>
+</select>
+</span>
+
+
+<span style="position:absolute;right:10px;">
+<span>/2 文字:</span>
+<select name="text2font" id="text2_font">
+  <option value="kai">楷體</option>
+  <option value="hei">黑體</option>
+  <option value="ming">明體</option>
+  <option value="monospace">monospace</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+</select>
+<select name="text2size" id="text2_size">
+  <option value="10">10</option>
+  <option value="14">14</option>
   <option value="18">18</option>
   <option value="22">22</option>
-  <option value="26" selected>26</option>
-  <option value="29">30</option>
+  <option value="26">26</option>
+  <option value="28">28</option>
+  <option value="32">32</option>
+  <option value="36">36</option>
+  <option value="44">44</option>
+  <option value="48">48</option>
+  <option value="54">54</option>
+  <option value="60">60</option>
+  <option value="72">72</option>
 </select>
-</div>
+</span>
 
-<!-- render area -->
-<div id="render_area" style="box-sizing:border-box;position:absolute;left:400px;top:50px;padding:40px;border: 1px solid #aaa;width:760px;height:600px;"></div>
+</div><!--tool 2-->
+
+</div><!--editor tool-->
+
+<!---------------------------------
+           render area
+----------------------------------->
+
+<div id="render_area" style="box-sizing:border-box;position:absolute;left:400px;top:67px;padding:40px;border: 1px solid #aaa;width:760px;height:900px;cursor:default;"></div>
+
+<div id="pre_render_area" style="visibility:hidden;box-sizing:border-box;position:absolute;left:400px;top:670px;padding:40px;border: 1px solid #aaa;width:760px;height:140px;"></div>
+
+
 
 </body>
 
